@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body 
+    { font-family: "Segoe UI", Arial; margin:0; padding:0; background:#eef2f7; }
+    .container { width:90%; max-width:1100px; margin:40px auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+    h1 {text-align:center; color:#2c3e50; margin-bottom:30px;}
+    form { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; margin-bottom:30px;}
+    input, select, button { padding:12px 15px; border:1px solid #ccc; border-radius:8px; font-size:15px;}
+    input:focus, select:focus {border-color:#007bff; outline:none; box-shadow:0 0 5px rgba(0,123,255,0.3);}
+    button { background:#007bff; color:#fff; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; transition:0.3s;}
+    button:hover {background:#0056b3;}
+    table { width:100%; border-collapse:collapse; border-radius:10px; overflow:hidden;}
+    th, td { padding:14px 16px; border-bottom:1px solid #eee; text-align:center;}
+    th { background:#007bff; color:#fff; font-size:16px; letter-spacing:0.5px;}
+    tr:nth-child(even){ background:#f9fbfd; }
+    tr:hover{ background:#eef6ff; }
+    a { text-decoration:none; padding:8px 14px; border-radius:6px; font-size:14px; display:inline-flex; align-items:center; gap:6px; transition:0.3s; }
+    .edit { background:#28a745; color:#fff; }
+    .edit:hover { background:#218838; }
+    .delete { background:#dc3545; color:#fff; margin-left:5px;}
+    .delete:hover { background:#c82333; }
+    h2 { margin:20px 0; color:#2c3e50; border-left:5px solid #007bff; padding-left:10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa-solid fa-graduation-cap"></i> Student Management System</h1>
+
+    <form action="/add" method="POST">
+      <input type="text" name="name" placeholder="Student Name" required>
+      <input type="number" name="age" placeholder="Age" required>
+      <select id="course" name="course" required>
+          <option value="">Select a Course</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Business Administration">Business Administration</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Medicine">Medicine</option>
+          <option value="Arts & Design">Arts & Design</option>
+          <option value="Psychology">Psychology</option>
+      </select>
+      <button type="submit"><i class="fa-solid fa-plus"></i> Add Student</button>
+    </form>
+
+    <h2><i class="fa-solid fa-list"></i> Student List</h2>
+    <table>
+      <tr>
+        <th><i class="fa-solid fa-user"></i> Name</th>
+        <th><i class="fa-solid fa-hashtag"></i> Age</th>
+        <th><i class="fa-solid fa-book"></i> Course</th>
+        <th><i class="fa-solid fa-gears"></i> Actions</th>
+      </tr>
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.age %></td>
+          <td><%= student.course %></td>
+          <td>
+            <a href="/edit/<%= student._id %>" class="edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+            <a href="/delete/<%= student._id %>" class="delete"><i class="fa-solid fa-trash"></i> Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+</body>
+</html>

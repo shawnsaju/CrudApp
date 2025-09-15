@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Student</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family:"Segoe UI", Arial; margin:0; padding:40px; background:#eef2f7; display:flex; justify-content:center; align-items:flex-start; min-height:100vh; }
+    .card { background:#fff; padding:30px; border-radius:12px; width:400px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+    h1 { text-align:center; color:#2c3e50; margin-bottom:20px; font-size:22px; }
+    form { display:flex; flex-direction:column; gap:15px; }
+    input, select { padding:12px; border:1px solid #ccc; border-radius:8px; font-size:15px; }
+    input:focus, select:focus { border-color:#007bff; outline:none; box-shadow:0 0 5px rgba(0,123,255,0.3);}
+    button { padding:12px; background:#007bff; color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:0.3s; }
+    button:hover { background:#0056b3; }
+    .back-link { display:flex; align-items:center; justify-content:center; margin-top:15px; text-decoration:none; color:#007bff; font-weight:bold; font-size:14px; transition:0.3s;}
+    .back-link i { margin-right:6px; }
+    .back-link:hover { color:#0056b3; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1><i class="fa-solid fa-pen-to-square"></i> Edit Student</h1>
+    <form action="/update/<%= student._id %>" method="POST">
+      <input name="name" value="<%= student.name %>" placeholder="Student Name" required />
+      <input name="age" type="number" value="<%= student.age %>" placeholder="Age" required />
+      <select name="course" required>
+        <option value="">Select a Course</option>
+        <option value="Computer Science" <%= student.course === "Computer Science" ? "selected" : "" %>>Computer Science</option>
+        <option value="Business Administration" <%= student.course === "Business Administration" ? "selected" : "" %>>Business Administration</option>
+        <option value="Engineering" <%= student.course === "Engineering" ? "selected" : "" %>>Engineering</option>
+        <option value="Medicine" <%= student.course === "Medicine" ? "selected" : "" %>>Medicine</option>
+        <option value="Arts & Design" <%= student.course === "Arts & Design" ? "selected" : "" %>>Arts & Design</option>
+        <option value="Psychology" <%= student.course === "Psychology" ? "selected" : "" %>>Psychology</option>
+      </select>
+      <button type="submit"><i class="fa-solid fa-rotate"></i> Update</button>
+    </form>
+    <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to List</a>
+  </div>
+</body>
+</html>
